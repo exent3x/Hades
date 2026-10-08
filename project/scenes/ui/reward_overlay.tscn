@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/reward_overlay.gd" id="1_reward"]
+
+[sub_resource type="StyleBoxFlat" id="Panel"]
+bg_color = Color(0.025, 0.022, 0.018, 0.985)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.43, 0.31, 0.19, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
+
+[node name="RewardOverlay" type="Control"]
+script = ExtResource("1_reward")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 165.0
+offset_right = 982.0
+offset_bottom = 490.0
+theme_override_styles/panel = SubResource("Panel")
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 782.0
+offset_bottom = 60.0
+text = "НАГРАДА"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.95, 0.82, 0.61, 1)
+theme_override_font_sizes/font_size = 25
+
+[node name="Hint" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 65.0
+offset_right = 782.0
+offset_bottom = 98.0
+text = "Выбери одно улучшение — 1 / 2 / 3"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.63, 0.58, 0.50, 1)
+theme_override_font_sizes/font_size = 14
+
+[node name="Choices" type="Control" parent="Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 112.0
+offset_right = 782.0
+offset_bottom = 290.0
+
+[node name="Damage" type="Button" parent="Panel/Choices"]
+layout_mode = 0
+offset_right = 235.0
+offset_bottom = 145.0
+text = "1\nЗАТОЧЕННОЕ ЖЕЛЕЗО\n+20% урона"
+theme_override_font_sizes/font_size = 14
+
+[node name="Health" type="Button" parent="Panel/Choices"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 485.0
+offset_bottom = 145.0
+text = "2\nКРОВЬ ЗЕМЛИ\n+20 максимального HP"
+theme_override_font_sizes/font_size = 14
+
+[node name="Dash" type="Button" parent="Panel/Choices"]
+layout_mode = 0
+offset_left = 500.0
+offset_right = 735.0
+offset_bottom = 145.0
+text = "3\nВЕТЕР В НОГАХ\n-0.08с к дэшу"
+theme_override_font_sizes/font_size = 14

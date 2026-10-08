@@ -1,0 +1,6 @@
+.godot/
+project/.godot/
+project/bin/windows/*.dll
+*.obj
+*.o
+__pycache__/

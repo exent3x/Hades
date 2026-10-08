@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/boss_room.gd" id="1_boss"]
+[sub_resource type="RectangleShape2D" id="WallV"]
+size = Vector2(40, 720)
+[sub_resource type="RectangleShape2D" id="WallH"]
+size = Vector2(1040, 40)
+
+[node name="LeshyBossRoom" type="Node2D"]
+script = ExtResource("1_boss")
+
+[node name="Ground" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-700, -450, 700, -450, 700, 450, -700, 450)
+color = Color(0.030, 0.020, 0.018, 1)
+[node name="Arena" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-520, -300, 520, -300, 520, 300, -520, 300)
+color = Color(0.12, 0.075, 0.045, 1)
+[node name="Circle" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -285, 74, -275, 142, -245, 201, -201, 245, -142, 275, -74, 285, 0, 275, 74, 245, 142, 201, 201, 142, 245, 74, 275, 0, 285, -74, 275, -142, 245, -201, 201, -245, 142, -275, 74, -285, 0, -275, -74, -245, -142, -201, -201, -142, -245, -74, -275, 0)
+color = Color(0.20, 0.10, 0.05, 0.45)
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-540, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+shape = SubResource("WallV")
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(540, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("WallV")
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2(0, -320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+shape = SubResource("WallH")
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2(0, 320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+shape = SubResource("WallH")
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(0, 210)
+[node name="BossSpawn" type="Marker2D" parent="."]
+position = Vector2(0, -70)
+[node name="Boss" type="Node2D" parent="."]
+
+[node name="BossBar" type="ProgressBar" parent="."]
+offset_left = 250.0
+offset_top = 24.0
+offset_right = 902.0
+offset_bottom = 46.0
+max_value = 900.0
+value = 900.0
+show_percentage = false
+[node name="Status" type="Label" parent="."]
+offset_left = 180.0
+offset_top = 55.0
+offset_right = 972.0
+offset_bottom = 92.0
+text = "ЛЕШИЙ"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.90, 0.68, 0.45, 1)
+theme_override_font_sizes/font_size = 20

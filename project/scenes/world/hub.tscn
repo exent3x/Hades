@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/hub.gd" id="1_hub"]
+
+[sub_resource type="RectangleShape2D" id="WallV"]
+size = Vector2(40, 720)
+[sub_resource type="RectangleShape2D" id="WallH"]
+size = Vector2(1040, 40)
+[sub_resource type="CircleShape2D" id="Shrine"]
+radius = 46.0
+
+[node name="Hub" type="Node2D"]
+script = ExtResource("1_hub")
+
+[node name="Ground" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-700, -450, 700, -450, 700, 450, -700, 450)
+color = Color(0.038, 0.033, 0.029, 1)
+
+[node name="Courtyard" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-520, -300, 520, -300, 520, 300, -520, 300)
+color = Color(0.10, 0.075, 0.055, 1)
+
+[node name="Path" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-140, -300, 140, -300, 180, 300, -180, 300)
+color = Color(0.13, 0.10, 0.075, 1)
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-540, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+shape = SubResource("WallV")
+[node name="Visual" type="Polygon2D" parent="WallLeft"]
+polygon = PackedVector2Array(-20, -360, 20, -360, 20, 360, -20, 360)
+color = Color(0.08, 0.055, 0.035, 1)
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(540, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("WallV")
+[node name="Visual" type="Polygon2D" parent="WallRight"]
+polygon = PackedVector2Array(-20, -360, 20, -360, 20, 360, -20, 360)
+color = Color(0.08, 0.055, 0.035, 1)
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2(0, -320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+shape = SubResource("WallH")
+[node name="Visual" type="Polygon2D" parent="WallTop"]
+polygon = PackedVector2Array(-540, -20, 540, -20, 540, 20, -540, 20)
+color = Color(0.08, 0.055, 0.035, 1)
+
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2(0, 320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+shape = SubResource("WallH")
+[node name="Visual" type="Polygon2D" parent="WallBottom"]
+polygon = PackedVector2Array(-540, -20, 540, -20, 540, 20, -540, 20)
+color = Color(0.08, 0.055, 0.035, 1)
+
+[node name="Shrine" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-54, 30, -46, -10, -25, -32, 0, -52, 25, -32, 46, -10, 54, 30, 0, 44)
+color = Color(0.38, 0.24, 0.10, 1)
+
+[node name="ShrineRing" type="Area2D" parent="."]
+position = Vector2(0, 0)
+monitoring = true
+monitorable = true
+collision_layer = 0
+collision_mask = 0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShrineRing"]
+shape = SubResource("Shrine")
+
+[node name="NPC" type="Polygon2D" parent="."]
+position = Vector2(-290, -130)
+polygon = PackedVector2Array(-28, 18, -25, -8, -10, -32, 10, -32, 25, -8, 28, 18, 0, 36)
+color = Color(0.19, 0.32, 0.28, 1)
+
+[node name="Sign" type="Label" parent="."]
+offset_left = -250.0
+offset_top = -210.0
+offset_right = 250.0
+offset_bottom = -160.0
+text = "ГРАНИЦА ЯВИ\nУбежище охотника"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.78, 0.68, 0.52, 1)
+theme_override_font_sizes/font_size = 26
+
+[node name="Hint" type="Label" parent="."]
+offset_left = -400.0
+offset_top = 170.0
+offset_right = 400.0
+offset_bottom = 230.0
+text = "ENTER — начать поход в Чёрный лес\nU — купить постоянное улучшение: 50 Вечной славы → +10 HP"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.68, 0.62, 0.54, 1)
+theme_override_font_sizes/font_size = 16

@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/combat_room.gd" id="1_room"]
+
+[sub_resource type="RectangleShape2D" id="WallV"]
+size = Vector2(40, 720)
+[sub_resource type="RectangleShape2D" id="WallH"]
+size = Vector2(1040, 40)
+[sub_resource type="RectangleShape2D" id="Pillar"]
+size = Vector2(82, 82)
+
+[sub_resource type="RectangleShape2D" id="DoorShape"]
+size = Vector2(200, 46)
+
+
+[node name="ForestRoom01" type="Node2D"]
+script = ExtResource("1_room")
+room_id = 1
+wave_count = 2
+enemies_per_wave = Array[int]([4, 5])
+elite_on_last_wave = true
+
+[node name="Ground" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-700, -450, 700, -450, 700, 450, -700, 450)
+color = Color(0.035, 0.043, 0.032, 1)
+[node name="Arena" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-520, -300, 520, -300, 520, 300, -520, 300)
+color = Color(0.09, 0.12, 0.075, 1)
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-540, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+shape = SubResource("WallV")
+[node name="Visual" type="Polygon2D" parent="WallLeft"]
+polygon = PackedVector2Array(-20, -360, 20, -360, 20, 360, -20, 360)
+color = Color(0.05, 0.08, 0.045, 1)
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(540, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("WallV")
+[node name="Visual" type="Polygon2D" parent="WallRight"]
+polygon = PackedVector2Array(-20, -360, 20, -360, 20, 360, -20, 360)
+color = Color(0.05, 0.08, 0.045, 1)
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2(0, -320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+shape = SubResource("WallH")
+[node name="Visual" type="Polygon2D" parent="WallTop"]
+polygon = PackedVector2Array(-540, -20, 540, -20, 540, 20, -540, 20)
+color = Color(0.05, 0.08, 0.045, 1)
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2(0, 320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+shape = SubResource("WallH")
+[node name="Visual" type="Polygon2D" parent="WallBottom"]
+polygon = PackedVector2Array(-540, -20, 540, -20, 540, 20, -540, 20)
+color = Color(0.05, 0.08, 0.045, 1)
+
+[node name="Pillar1" type="StaticBody2D" parent="."]
+position = Vector2(-170, -70)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillar1"]
+shape = SubResource("Pillar")
+[node name="Visual" type="Polygon2D" parent="Pillar1"]
+polygon = PackedVector2Array(-41, -41, 41, -41, 41, 41, -41, 41)
+color = Color(0.10, 0.15, 0.09, 1)
+[node name="Pillar2" type="StaticBody2D" parent="."]
+position = Vector2(175, 90)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillar2"]
+shape = SubResource("Pillar")
+[node name="Visual" type="Polygon2D" parent="Pillar2"]
+polygon = PackedVector2Array(-41, -41, 41, -41, 41, 41, -41, 41)
+color = Color(0.10, 0.15, 0.09, 1)
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(0, 190)
+
+[node name="EnemySpawns" type="Node2D" parent="."]
+[node name="S1" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(-360, -200)
+[node name="S2" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(0, -230)
+[node name="S3" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(360, -190)
+[node name="S4" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(-310, 90)
+[node name="S5" type="Marker2D" parent="EnemySpawns"]
+position = Vector2(310, 100)
+
+[node name="Enemies" type="Node2D" parent="."]
+[node name="DoorBlock" type="StaticBody2D" parent="."]
+position = Vector2(0, 320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBlock"]
+shape = SubResource("DoorShape")
+
+[node name="DoorClosed" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-86, 320, 86, 320, 72, 300, -72, 300)
+color = Color(0.50, 0.10, 0.06, 1)
+[node name="DoorOpen" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-86, 320, 86, 320, 70, 304, -70, 304)
+color = Color(0.23, 0.58, 0.26, 1)
+visible = false
+[node name="Status" type="Label" parent="."]
+offset_left = -300.0
+offset_top = -365.0
+offset_right = 300.0
+offset_bottom = -330.0
+text = "ВОЛНА 1 / 2"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.78, 0.72, 0.60, 1)
+theme_override_font_sizes/font_size = 18
