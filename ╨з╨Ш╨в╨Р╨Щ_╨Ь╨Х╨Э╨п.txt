@@ -1,0 +1,9 @@
+ВАЖНО: это ПОЛНЫЙ проект v1.0 (без папки godot-cpp, она у вас уже есть).
+
+1. Распакуйте в НОВУЮ папку, например russian_roguelite_v10.
+2. Скопируйте в неё вашу папку godot-cpp (из russian_roguelite_v09) — рядом с SConstruct.
+3. В этой папке запустите rebuild_debug.bat.
+4. Откройте project/project.godot в Godot (первый запуск импортирует модели .glb).
+
+НЕ собирайте из папки патча (russian_roguelite_v10_patch): там только изменённые файлы, нет register_types.cpp
+и остальных исходников — DLL получается без экспортов, поэтому scons ругается на .exp/.lib.

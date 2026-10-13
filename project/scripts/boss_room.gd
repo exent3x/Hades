@@ -42,7 +42,7 @@ func _process(_delta: float) -> void:
 		$BossBar.max_value = boss.get_max_health()
 		$BossBar.value = boss.get_health()
 
-		var ratio : float = boss.get_health() / boss.get_max_health()
+		var ratio :float= boss.get_health() / boss.get_max_health()
 		var phase := 1 if ratio > 0.66 else (2 if ratio > 0.33 else 3)
 		$Status.text = "ЛЕШИЙ   ФАЗА %d   •   %d / %d HP" % [
 			phase, int(boss.get_health()), int(boss.get_max_health())

@@ -123,6 +123,18 @@ func _on_core_died() -> void:
 
 signal died
 
+func set_active(active: bool) -> void:
+	# Во время карты, выбора награды и меню ядро игрока не должно
+	# продолжать читать WASD/SPACE в скрытом состоянии.
+	if core == null or not is_instance_valid(core):
+		return
+	if not active:
+		core.set_velocity(Vector2.ZERO)
+	core.set_physics_process(active)
+	core.set_process(active)
+	core.set_process_input(active)
+	core.set_process_unhandled_input(active)
+
 func teleport(world_position: Vector2) -> void:
 	if core != null:
 		core.global_position = world_position
